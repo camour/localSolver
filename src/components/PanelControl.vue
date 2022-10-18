@@ -61,7 +61,7 @@
             display: flex;
             justify-content: space-between;
         }
-        input[type="number"]{
+        select, input[type="number"]{
             width: 50px;
             padding: 12px 20px;
             border-style: solid;

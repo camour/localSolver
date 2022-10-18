@@ -16,12 +16,11 @@ const store = new Vuex.Store({
     lines: 0,
     columns: 0,
     startingLine: [],
-    mode: 'taurid', 
     rule: 0
   },
   mutations: {
     INIT_CELLS_ARRAY(state){
-      state.cellsArray.length = 0;
+      state.cellsArray= [];
       state.cellsArray = new Array(state.lines);
       for(let line = 0 ; line < state.lines; line++){
         state.cellsArray[line] = new Array(state.columns);
@@ -30,7 +29,7 @@ const store = new Vuex.Store({
         }
       }
     },
-    ADD_CELL(state, payload){
+    EDIT_CELL(state, payload){
       state.cellsArray[payload.line][payload.column] = payload.cellValue;
     },
     EDIT_LINES(state, payload){
@@ -41,7 +40,7 @@ const store = new Vuex.Store({
     },
     EDIT_RULE(state, payload){
       state.rule = payload.rule;  
-    },    
+    }, 
     CREATE_STARTING_LINE(state){
       state.startingLine = new Array(state.columns);
       for(let column = 0; column < state.columns; column++){
@@ -50,10 +49,10 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    addCell({commit}, payload){
+    editCell({commit}, payload){
       let requiredKeys = ['line', 'column', 'cellValue']; 
       if(checkObjectProperties(payload, requiredKeys)){
-        return commit('ADD_CELL', payload);
+        return commit('EDIT_CELL', payload);
       }
     },
     editLines({commit}, payload){
@@ -79,7 +78,7 @@ const store = new Vuex.Store({
         commit('CREATE_STARTING_LINE');
         commit('INIT_CELLS_ARRAY');  
       }
-    }
+    },
   }
 })
 

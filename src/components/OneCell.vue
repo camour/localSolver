@@ -1,6 +1,8 @@
 <template>
     <div class="cell">
-        <div v-if="(line > 0)" class="square" :class="getCellValue() === 1 ? 'black' : 'white'"></div>
+        <div v-if="(line > 0)"> 
+            <div class="square" :class="getCellValue() === 1 ? 'black' : 'white'"></div>            
+        </div>
         <div v-else class="square" :class="cellsArray[0][column] === 1 ? 'black' : 'white'"></div>
     </div>
   </template>
@@ -19,24 +21,29 @@
         }
       },
       computed: {
-        ...mapState(['cellsArray', 'lines', 'columns', 'mode', 'rule']),
+        ...mapState(['cellsArray', 'lines', 'columns', 'rule']),
       },
       methods: {
-        ...mapActions(['addCell']),
+        ...mapActions(['editCell']),
         getCellValue(){
+            console.log('get cell value')
             let trio = [0, 0 ,0];
             trio[1] = this.cellsArray[this.line - 1][this.column];
-            if(this.column === 0){
-                trio[0] = this.mode === 'miror' ? this.cellsArray[0][0] : this.cellsArray[this.line - 1][this.columns -1];
+            if((this.column === 0) && (this.column === this.columns - 1)){
+                trio[0] = this.cellsArray[0][0];
+                trio[2] = this.cellsArray[0][0];
+            }else if(this.column === 0){
+                trio[0] = this.cellsArray[0][0];
                 trio[2] = this.cellsArray[this.line - 1][this.column + 1];
             }else if(this.column === (this.columns - 1)){
-                trio[2] = this.mode === 'miror' ? this.cellsArray[0][0] : this.cellsArray[this.line - 1][0];
+                trio[2] = this.cellsArray[0][0];
                 trio[0] = this.cellsArray[this.line - 1][this.column - 1]
             }
             else{
                 trio[0] = this.cellsArray[this.line - 1][this.column - 1];
                 trio[2] = this.cellsArray[this.line - 1][this.column + 1];
-            }         
+            } 
+            console.log(trio)        
             return this.getCellConfiguration(trio, trio.length);      
         },
         getCellConfiguration(trio, n){
@@ -54,7 +61,16 @@
         }
       },
       created(){
-        this.addCell({
+        console.log('created ' + ' at ' + this.line + ', ' + this.column);
+        this.editCell({
+            line: this.line,
+            column: this.column,
+            cellValue: (this.line === 0) ? this.cellsArray[this.line][this.column] : this.getCellValue()
+        })
+      },
+      updated(){
+        console.log('updated ' + ' at ' + this.line + ', ' + this.column);
+        this.editCell({
             line: this.line,
             column: this.column,
             cellValue: (this.line === 0) ? this.cellsArray[this.line][this.column] : this.getCellValue()
