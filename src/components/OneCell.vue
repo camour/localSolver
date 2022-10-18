@@ -26,7 +26,6 @@
       methods: {
         ...mapActions(['editCell']),
         getCellValue(){
-            console.log('get cell value')
             let trio = [0, 0 ,0];
             trio[1] = this.cellsArray[this.line - 1][this.column];
             if((this.column === 0) && (this.column === this.columns - 1)){
@@ -43,7 +42,6 @@
                 trio[0] = this.cellsArray[this.line - 1][this.column - 1];
                 trio[2] = this.cellsArray[this.line - 1][this.column + 1];
             } 
-            console.log(trio)        
             return this.getCellConfiguration(trio, trio.length);      
         },
         getCellConfiguration(trio, n){
@@ -51,7 +49,6 @@
             for(let index = 0; index < (Math.pow(2, n)) ; index++){
                 array = tools.getBinary(index, n);
                 if(this.arrayEquals(trio, array)){
-                    console.log('trio : ' + trio + ' and array ' + array + ' are equals');
                     return tools.getBinary(this.rule, Math.pow(2, n))[(Math.pow(2, n) - 1) - index];
                 }
             }      
@@ -61,7 +58,6 @@
         }
       },
       created(){
-        console.log('created ' + ' at ' + this.line + ', ' + this.column);
         this.editCell({
             line: this.line,
             column: this.column,
@@ -69,7 +65,6 @@
         })
       },
       updated(){
-        console.log('updated ' + ' at ' + this.line + ', ' + this.column);
         this.editCell({
             line: this.line,
             column: this.column,

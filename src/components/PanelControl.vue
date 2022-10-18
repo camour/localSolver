@@ -50,10 +50,13 @@
         transition: all 0.3s;
         &.hide{
             transform: translateX(-110%);
+            button{
+                transform: scale(1.3);
+            }
         }
         h2{
             position: relative;
-            top: -20px;
+            top: -20px;            
         }
         div{
             width: 200px;
@@ -74,9 +77,9 @@
         }
         button{
             position: absolute;
-            right: -30px;
-            width: 40px;
-            height: 100px;
+            right: -60px;
+            width: 70px;
+            height: 120px;
             outline: none;
             border: 0;
             border-radius: 0.25rem;
@@ -84,6 +87,8 @@
             box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
             cursor: pointer;
             transition: all 0.3s;
+            transform: scale(0.6);
+            z-index: -1;
             .arrow {
                 border: solid black;
                 border-width: 0 3px 3px 0;
