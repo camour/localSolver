@@ -5,7 +5,7 @@
         </div>
         <div v-else class="square" :class="cellsArray[0][column] === 1 ? 'black' : 'white'"></div>
     </div>
-  </template>
+</template>
   
   <script>
     import tools from '../tools/tools.js';
@@ -55,6 +55,15 @@
         },
         arrayEquals(A, B){
             return B.every((element, index) => { return A[index] === element});
+        }
+      },
+      watch: {
+        rule(){
+            this.editCell({
+                line: this.line,
+                column: this.column,
+                cellValue: (this.line === 0) ? this.cellsArray[this.line][this.column] : this.getCellValue()
+            })
         }
       },
       created(){
