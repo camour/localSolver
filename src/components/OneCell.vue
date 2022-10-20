@@ -85,20 +85,14 @@
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped lang="scss">
+      @import '../../sass/mixin.scss';
     .cell{
         position: relative;
-        width: 50px;
-        height: 50px;
+        @include setDimensions(50px, null, 50px);
         border: 2px black solid;
         .square{
-            position: absolute;
-            width: 50%;
-            height: 50%;
-            top: 0;
-            left: 0; 
-            right: 0;
-            bottom: 0;     
-            margin: auto;   
+            @include setPositionAbsolute(0, 0, 0, 0);
+            @include setDimensions(50%, auto, 50%); 
         }
         .black{
             background-color: black;

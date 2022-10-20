@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>My Cellular Automate</h1>
     <CellsPanel/>
   </div>
 </template>
@@ -23,5 +24,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  h1{
+    margin: 0;
+    margin-bottom: 20px
+  }
 }
 </style>

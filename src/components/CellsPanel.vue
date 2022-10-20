@@ -32,12 +32,13 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import '../../sass/mixin.scss';
+
   .cells-panel{
     position: relative;
-    display: flex;
-    justify-content: center;
+    @include flexBox(row, center);
   }
   .line{
-    display: flex;
+    @include flexBox();
   }
 </style>

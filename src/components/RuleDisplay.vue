@@ -48,28 +48,23 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '../../sass/mixin.scss';
+
     .display-rule{
-        position: absolute;
-        right: 150px;
-        width: 180px;
+        @include setDimensions(180px);
+        @include setPositionAbsolute(null, 150px);
+        @include flexBox(column, space-around, center);
         padding: 20px;
         border-radius: 0.25rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
         background-image: linear-gradient(180deg,#242220 10%, #33302c 80%);          
         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
         color: white;
         transition: all 0.3s;
     }
     .dot {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        height: 25px;
+        @include setPositionAbsolute(10px, 10px);
+        @include setDimensions(25px, null, 25px);
         line-height: 25px;
-        width: 25px;
         background-color: rgb(255, 255, 255);
         border-radius: 50%;
         display: block;
@@ -78,14 +73,10 @@
         cursor: pointer;
     }
     .infos{
-        position: absolute;
-        bottom: -20px;   
-        width: 450px;
-        height: 50px;
-        margin: 0;
+        @include setPositionAbsolute(null, null, -20px);
+        @include setDimensions(450px, 0, 50px);
+        @include flexBox(row, space-between);
         border-radius: 0.25rem;
-        display: flex;
-        justify-content: space-between;
         opacity: 0;
         background-image: linear-gradient(180deg,#f8f4ef 10%, #f7f4f0 80%);          
         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -97,16 +88,13 @@
         }
         .configuration{
             position: relative;
-            display: flex;
-            justify-content: space-between;
+            @include flexBox(row, space-between);
             & + .square{
                 transform: translateX(100%);
             }
         }
         .square{
-            width: 10px;
-            height: 10px;
-            margin-top: 2px;
+            @include setDimensions(10px, 2px null null null, 10px);
             border: 2px rgb(43, 39, 39) solid;
             &.black{
                 background-color: black;
